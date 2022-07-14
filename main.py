@@ -6,6 +6,7 @@ API_KEY = "54bb0787a703d69941a9db676179294f"
 url_top_movies = "https://developers.themoviedb.org/3/movies/get-top-rated-movies"
 url_rate_movie = "https://developers.themoviedb.org/3/movies/rate-movie"
 url_auth = "https://api.themoviedb.org/3/movie/550?api_key={}".format(API_KEY)
+url_img = "https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.png"
 
 url_language = "https://api.themoviedb.org/3/movie/76341?api_key={}&language=".format(API_KEY)
 
@@ -36,13 +37,21 @@ def test_auth():
     response = requests.get(url_auth)
     # print("response = ", response)
     # # str = json.loads(response.json())
-    response.json()
+    # response.json()
 
     assert response.status_code == 200
 
 
-def test_language_codes():
-    for iso_code in iso_codes:
-        request = url_language + iso_code
-        response = requests.get(request)
-        assert response.status_code == 200
+def test_img():
+    response = requests.get(url_img)
+    print("headers ", response.headers)
+
+    assert response.status_code == 200
+    assert response.headers['Content-Type'] == "image/png"
+
+
+# def test_language_codes():
+#     for iso_code in iso_codes:
+#         request = url_language + iso_code
+#         response = requests.get(request)
+#         assert response.status_code == 200
