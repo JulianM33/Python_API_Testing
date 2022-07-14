@@ -1,16 +1,9 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import requests
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+url_top_movies = "https://developers.themoviedb.org/3/movies/get-top-rated-movies"
+url_rate_movie = "https://developers.themoviedb.org/3/movies/rate-movie"
 
+response = requests.get(url_top_movies)
+print(response)
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharms')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
