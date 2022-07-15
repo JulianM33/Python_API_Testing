@@ -21,11 +21,6 @@ url_404 = "https://api.themoviedb.org/3/movie/2131513/images?api_key=54bb0787a70
 # Test basic GET API
 def test_basic():
     response = requests.get(url_top_movies)
-    print(response)
-
-    print("content = ", response.content)
-    print("headers = ", response.headers)
-
     assert response.status_code == 200
 
 
@@ -38,14 +33,12 @@ def test_auth():
 # Test bad request
 def test_403():
     response = requests.get(url_403)
-    print(response)
     assert response.status_code == 403
 
 
 # Test not found request
 def test_404():
     response = requests.get(url_404)
-    print(response)
     assert response.status_code == 404
 
 
@@ -60,14 +53,11 @@ def test_get_token():
     # Begin by obtaining initial auth token
     url_get_token = "https://api.themoviedb.org/3/authentication/token/new?api_key={}".format(API_KEY)
     response = requests.get(url_get_token)
-    print(response)
 
     assert response.status_code == 200
 
     # Store token obtained given in the JSON response
     NEW_TOKEN = response.json()["request_token"]
-    print(NEW_TOKEN)
-    print()
 
     # Approving token requires manual user approval, we print link so that we can authenticate
     # In order to prevent proceeding before the user approval, we can run in debug mode and put a
